@@ -32,7 +32,7 @@ class ZyboSerialDriver:
         return pty
 
     def enviar(self, port, data):
-        #print('send', port, data)
+        print('send', port, data)
         for b in data:
             self.mm[port*4:port*4+4] = struct.pack('I', b)
 
@@ -49,7 +49,7 @@ class ZyboSerialDriver:
             buffers[port].append(b)
         for port, dados in buffers.items():
             try:
-                #print('recv', port, dados)
+                print('recv', port, dados)
                 self.callbacks[port](bytes(dados))
             except:
                 traceback.print_exc()
